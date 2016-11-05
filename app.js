@@ -40,6 +40,10 @@ io.sockets.on('connection',function(socket){
     updateUsernames();
   });
 
+  socket.on('user image',function(image){
+    io.sockets.emit('addimage','Image Compartida :',image);
+  });
+
   function updateUsernames(){
     io.sockets.emit('get users',users);
   }

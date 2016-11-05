@@ -22,6 +22,22 @@ $(function(){
     }
   });
 
+  socket.on('addimage',function(msg,base64image){
+    $chat.append(
+      $('<p>').append($('<b>').text(msg),'<img src="'+base64image+'"/>'
+      )
+    );
+
+  });
+  $("#imagefile").on('change',function(e){
+    var file=e.originalEvent.target.files[0];
+    var reader=new FileReader();
+    reader.onload=function(evt){
+      socket.emit('user image',evt.target.result);
+    };
+    reader.readAsDataURL(file);
+  });
+
   $userForm.submit(function(e){
     e.preventDefault();
     socket.emit('new user',$username.val(),function(data){
