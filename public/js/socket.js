@@ -23,9 +23,7 @@ $(function(){
   });
 
   socket.on('addimage',function(msg,base64image){
-    $chat.append(
-      $('<p>').append($('<b>').text(msg),'<img src="'+base64image+'"/>'
-      )
+    $chat.append($('<p>').append($('<b>').text(msg.user+":"),'<img src="'+base64image+'"/>')
     );
 
   });
@@ -33,7 +31,7 @@ $(function(){
     var file=e.originalEvent.target.files[0];
     var reader=new FileReader();
     reader.onload=function(evt){
-      socket.emit('user image',evt.target.result);
+      socket.emit('user image',evt.target.result,$username.val());
     };
     reader.readAsDataURL(file);
   });
