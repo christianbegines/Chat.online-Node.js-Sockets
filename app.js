@@ -20,17 +20,17 @@ app.get('/',function(req,res){
 io.sockets.on('connection',function(socket){
 
   connections.push(socket);
-  console.log('Connected: %s sockets connected',connections.length);
+  console.log('Connected: %s usuarios conectados',connections.length);
 
   socket.on('disconnect',function(data){
     users.splice(users.indexOf(socket.username),1);
     updateUsernames();
     connections.splice(connections.indexOf(socket),1);
-    console.log('Disconnected %s sockets connected',connections.length);
+    console.log('Disconnected: %s usuarios conectados',connections.length);
   });
 
   socket.on('send message',function(data){
-    io.sockets.emit('new message',{msg:data});
+    io.sockets.emit('new message',{msg:data,user:socket.username});
   });
 
   socket.on('new user',function(data,callback){

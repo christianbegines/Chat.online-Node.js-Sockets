@@ -18,7 +18,7 @@ $(function(){
 
   socket.on('new message',function(data){
     if(data.msg!==''){
-        $chat.append( '<div class="well">'+data.msg+'</div>');
+        $chat.append( '<div class="well"><strong>'+data.user+': </strong>'+data.msg+'</div>');
     }
   });
 
