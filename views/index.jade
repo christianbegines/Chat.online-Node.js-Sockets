@@ -1,0 +1,28 @@
+extends ./layout.jade
+block contenido
+  .container  
+    #userFormArea.row
+      .col-md-4
+      .col-md-4
+        form(id="userForm")
+          .form-group
+            label Enter Username
+            input(class="form-control" id="username")
+            br
+            input(type="submit" class="btn btn-primary" value="login")  
+    #messageArea
+      .row
+        .col-md-4
+          .well
+            h3 Online users
+              ul(class="list-group" id="users")
+        .col-md-8
+          div(class="chat" id="chat")
+          form(id="messageForm")
+            .form-group
+              label Enter Message
+              textarea(class="form-control" id="message")
+              br
+              input(type="submit" class="btn btn-primary" value="send message")
+  script(type="text/javascript" src="/public/js/socket.js")
+  
