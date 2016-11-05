@@ -40,6 +40,10 @@ io.sockets.on('connection',function(socket){
     updateUsernames();
   });
 
+  socket.on('user image',function(image,data){
+    io.sockets.emit('addimage',{msg:data,user:socket.username},image);
+  });
+
   function updateUsernames(){
     io.sockets.emit('get users',users);
   }
