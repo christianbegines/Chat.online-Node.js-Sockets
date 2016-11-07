@@ -17,8 +17,19 @@ $(function(){
   });
 
   socket.on('new message',function(data){
+    nodoTextoMsg = document.createTextNode(data.msg);
+    nodoTextoUsr=document.createTextNode(data.user+": ");
+    nodoDiv= document.createElement('div');
+    nodoDiv.setAttribute("class","well");
+    nodoNegrita=document.createElement('strong');
+    nodoNegrita.append(nodoTextoUsr);
+    nodoDiv.append(nodoNegrita);
+    nodoDiv.append(nodoTextoMsg);
+
+
     if(data.msg!==''){
-        $chat.append( '<div class="well"><strong>'+data.user+': </strong>'+data.msg+'</div>');
+        //$chat.append( '<div class="well"><strong>'+data.user+': </strong>'+data.msg+'</div>');
+        $chat.append(nodoDiv);
     }
   });
 
